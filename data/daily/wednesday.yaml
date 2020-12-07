@@ -1,0 +1,13 @@
+# Wednesday
+7:
+  guild_raid: "wind"
+  netherworld_gate: false
+  demon_encounter: "shinkiro"
+2:
+  maintenance: false
+  soul_zone_10: ["boroboroton", "temptress", "harpy", "mimic"]
+  soul_zone_11: ["soultaker"]
+  totem_zone: ["sakura"]
+18:
+  demon_encounter: "gashadokuro"
+  netherworld_gate: false

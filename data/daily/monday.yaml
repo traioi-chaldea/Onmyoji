@@ -1,0 +1,14 @@
+# Monday
+7:
+  guild_raid: false
+  netherworld_gate: true
+  demon_encounter: "tsuchigumo"
+
+12:
+  maintenance: false
+  soul_zone_10: ["jizo_statue", "snow_spirit", "house_imp", "claws"]
+  soul_zone_11: ["sea_sprite"]
+  totem_zone: []
+18:
+  demon_encounter: "ghostly_songstress"
+  netherworld_gate: false
