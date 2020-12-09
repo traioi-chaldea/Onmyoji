@@ -40,7 +40,7 @@ func getSoulZone10(sZone10 []string) string {
 		result += "Tất cả các ngự."
 	} else {
 		for _, soul := range sZone10 {
-			result += "\n  + " + translateSoul(soul)
+			result += "\n  - " + translateSoul(soul)
 		}
 	}
 	return result
@@ -50,7 +50,7 @@ func getSoulZone11(sZone11 []string) string {
 	result := ""
 	result += "- Rắn 11: "
 	for _, soul := range sZone11 {
-		result += "\n  + " + translateSoul(soul)
+		result += "\n  - " + translateSoul(soul)
 	}
 	return result
 }

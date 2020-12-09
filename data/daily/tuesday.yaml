@@ -2,12 +2,12 @@
 7:
   guild_raid: "fire"
   netherworld_gate: false
-  demon_encounter: "ghostly_songtress"
+  demon_encounter: "ghostly_songstress"
 12:
   maintenance: false
   soul_zone_10: ["holy_flame", "fortune_cat", "scarlet", "samisen"]
   soul_zone_11: ["yamabiko"]
   totem_zone: ["seimei"]
 18:
-  demon_encounter: "shinkiro"
+  demon_encounter: "shinkirou"
   netherworld_gate: false
