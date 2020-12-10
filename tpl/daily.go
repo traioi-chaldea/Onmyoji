@@ -16,7 +16,7 @@ func TPLDaily(cTime string, content interface{}) {
 	var td DAILY_ENTRY
 	tplName := fmt.Sprintf("daily%sh.tpl", cTime)
 
-	td.Greeting = "Chao nhe"
+	td.Greeting = getGreeting()
 	td.Time = cTime
 	td.Content = content
 
