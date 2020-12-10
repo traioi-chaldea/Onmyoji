@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"github.com/TraiOi/games"
+	"github.com/TraiOi/tpl"
 )
 
 var (
@@ -14,6 +15,7 @@ func main() {
 	flag.Parse()
 
 	if *daily {
-		games.Handler("daily", *cTime)
+		tpl.TPLDaily(*cTime, games.Handler("daily", *cTime))
 	 }
 }
+

@@ -2,12 +2,12 @@
 7:
   guild_raid: "water"
   netherworld_gate: false
-  demon_encounter: "gashadokuro"
+  demon_encounter: "odokuro"
 12:
   maintenance: true
   soul_zone_10: ["tree_spirit", "shy_soul", "watcher", "seductress"]
-  soul_zone_11: ["nightwing"]
-  totem_zone: ["hiromasa"]
+  soul_zone_11: "nightwing"
+  totem_zone: "hiromasa"
 18:
   demon_encounter: "jishin_namazu"
   netherworld_gate: false

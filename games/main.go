@@ -5,7 +5,8 @@ import (
 	"strings"
 )
 
-func Handler(choice string, cTime string) {
+func Handler(choice string, cTime string) interface{} {
+	var result interface{}
 	t := time.Now()
 	t.Format("Mon Jan _2 15:04:05 2006")
 
@@ -16,6 +17,7 @@ func Handler(choice string, cTime string) {
 	case "daily":
 		daily := new(DAILY_INFO)
 		daily.GetTime(weekday)
-		daily.Run(cTime)
+		result = daily.Run(cTime)
 	}
+	return result
 }

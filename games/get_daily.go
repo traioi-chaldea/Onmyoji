@@ -2,7 +2,6 @@ package games
 
 import(
 	"fmt"
-	"encoding/json"
 	vp "github.com/spf13/viper"
 )
 
@@ -15,8 +14,8 @@ type FIRST_ZONE struct {
 type SECOND_ZONE struct {
 	Maintenance bool    `json:"maintenance"`
 	SoulZone10 []string `json:"soul_zone_10"`
-	SoulZone11 []string `json:"soul_zone_11"`
-	TotemZone []string  `json:"totem_zone"`
+	SoulZone11 string `json:"soul_zone_11"`
+	TotemZone string  `json:"totem_zone"`
 }
 
 type THIRD_ZONE struct {
@@ -55,8 +54,8 @@ func (this *DAILY_INFO) getFrom7H(info *vp.Viper) {
 func (this *DAILY_INFO) getFrom12H(info *vp.Viper) {
 	this.Second.Maintenance = info.GetBool("maintenance")
 	this.Second.SoulZone10 = info.GetStringSlice("soul_zone_10")
-	this.Second.SoulZone11 = info.GetStringSlice("soul_zone_11")
-	this.Second.TotemZone = info.GetStringSlice("totem_zone")
+	this.Second.SoulZone11 = info.GetString("soul_zone_11")
+	this.Second.TotemZone = info.GetString("totem_zone")
 }
 
 func (this *DAILY_INFO) getFrom18H(info *vp.Viper) {
@@ -64,78 +63,58 @@ func (this *DAILY_INFO) getFrom18H(info *vp.Viper) {
 	this.Third.NetherworldGate = info.GetBool("netherworld_gate")
 }
 
-func (this *DAILY_INFO) RunJSON() {
-	result, err := json.Marshal(this)
-	if err != nil {
-		panic(err)
+func (this *DAILY_INFO) parse7H() {
+	this.First = FIRST_ZONE{
+		this.First.GuildRaid,
+		this.First.NetherworldGate,
+		translateSoul(this.First.DemonEncounter),
 	}
-	fmt.Println(string(result))
 }
 
-func (this *DAILY_INFO) parseFrom7H() string {
-	var result string
-	gRaid := getGuildRaid(this.First.GuildRaid)
-	nGate := getNetherworldGate(this.First.NetherworldGate)
-	dEnco := getDemonEncounter(this.First.DemonEncounter)
-
-	result += fmt.Sprintf("7h có:\n")
-	if gRaid != "" {
-		result += fmt.Sprintf(gRaid) + "\n"
+func (this *DAILY_INFO) parse12H() {
+        for index, _ := range this.Second.SoulZone10 {
+                 tmp := this.Second.SoulZone10[index]
+                 this.Second.SoulZone10[index] = translateSoul(tmp)
+        }
+	this.Second = SECOND_ZONE{
+		this.Second.Maintenance,
+		this.Second.SoulZone10,
+		translateSoul(this.Second.SoulZone11),
+		this.Second.TotemZone,
 	}
-	if nGate != "" {
-		result += fmt.Sprintf(nGate) + "\n"
-	}
-	if dEnco != "" {
-		result += fmt.Sprintf(dEnco) + "\n"
-	}
-	return result
 }
 
-func (this *DAILY_INFO) parseFrom12H() string {
-	var result string
-	m       := getMaintenance(this.Second.Maintenance)
-	sZone10 := getSoulZone10(this.Second.SoulZone10)
-	sZone11 := getSoulZone11(this.Second.SoulZone11)
-	tZone   := getTotemZone(this.Second.TotemZone)
-
-	result += fmt.Sprintf("12h có:\n")
-	if m != "" {
-		result += fmt.Sprintf(m) + "\n"
+func (this *DAILY_INFO) parse18H() {
+	this.Third = THIRD_ZONE{
+		translateSoul(this.Third.DemonEncounter),
+		this.Third.NetherworldGate,
 	}
-	if sZone10 != "" {
-		result += fmt.Sprintf(sZone10) + "\n"
-	}
-	if sZone11 != "" {
-		result += fmt.Sprintf(sZone11) + "\n"
-	}
-	if tZone != "" {
-		result += fmt.Sprintf(tZone) + "\n"
-	}
-	return result
 }
 
-func (this *DAILY_INFO) parseFrom18H() string {
-	var result string
-	dEnco := getDemonEncounter(this.Third.DemonEncounter)
-	nGate := getNetherworldGate(this.Third.NetherworldGate)
-
-	result += fmt.Sprintf("18h có:\n")
-	if dEnco != "" {
-		result += fmt.Sprintf(dEnco) + "\n"
-	}
-	if nGate != "" {
-		result += fmt.Sprintf(nGate) + "\n"
-	}
-	return result
+func (this *DAILY_INFO) print7H() FIRST_ZONE {
+	this.parse7H()
+	return this.First
 }
 
-func (this *DAILY_INFO) Run(choice string) {
+func (this *DAILY_INFO) print12H() SECOND_ZONE {
+	this.parse12H()
+	return this.Second
+}
+
+func (this *DAILY_INFO) print18H() THIRD_ZONE {
+	this.parse18H()
+	return this.Third
+}
+
+func (this *DAILY_INFO) Run(choice string) interface{} {
+	var result interface{}
 	switch choice {
 	case "7":
-		fmt.Print(this.parseFrom7H())
+		result = this.print7H()
 	case "12":
-		fmt.Print(this.parseFrom12H())
+		result = this.print12H()
 	case "18":
-		fmt.Print(this.parseFrom18H())
+		result = this.print18H()
 	}
+	return result
 }

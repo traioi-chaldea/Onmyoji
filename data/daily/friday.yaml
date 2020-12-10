@@ -6,8 +6,8 @@
 12:
   maintenance: false
   soul_zone_10: ["mirror_lady", "dawn_fairy", "priestess", "shadow"]
-  soul_zone_11: ["kyoukotsu"]
-  totem_zone: ["yaobikuni"]
+  soul_zone_11: "kyoukotsu"
+  totem_zone: "yaobikuni"
 18:
   demon_encounter: "oboroguruma"
   netherworld_gate: true
