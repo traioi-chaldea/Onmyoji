@@ -12,7 +12,7 @@
 --time [time]: Using to notify with time in [COMMAND]
 
 Examples:
-./onmyji --daily --time 7
+./onmyoji --daily --time 7
   Notify at 7 hour everyday with daily schedule.
 ```
 
