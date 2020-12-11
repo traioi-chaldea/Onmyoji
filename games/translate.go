@@ -23,3 +23,8 @@ func translateSoul(name string) string {
 	vp := translate("soul")
 	return vp.Sub(name).GetString("vsub")
 }
+
+func translateKirin(name string) string {
+	vp := translate("evol")
+	return vp.GetString(name)
+}

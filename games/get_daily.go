@@ -65,7 +65,7 @@ func (this *DAILY_INFO) getFrom18H(info *vp.Viper) {
 
 func (this *DAILY_INFO) parse7H() {
 	this.First = FIRST_ZONE{
-		this.First.GuildRaid,
+		translateKirin(this.First.GuildRaid),
 		this.First.NetherworldGate,
 		translateSoul(this.First.DemonEncounter),
 	}
