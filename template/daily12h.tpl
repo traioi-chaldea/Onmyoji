@@ -15,7 +15,7 @@
 - Rắn 11: {{ .Content.SoulZone11 }}
 {{- if eq .Content.TotemZone "false" }}
 {{- else if eq .Content.TotemZone "all" }}
-- Totem zone: Tất cả.
+- Phó bản Ngự Linh: Tất cả.
 {{- else }}
-- Totem zone: {{ .Content.TotemZone }}
+- Phó bản Ngự Linh: {{ .Content.TotemZone }}
 {{- end }}
