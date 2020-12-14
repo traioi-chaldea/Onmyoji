@@ -124,3 +124,6 @@ pearl:
 priestess:
   type: "HP"
   vsub: "Chung linh"
+all:
+  type: "all"
+  vsub: "Tất cả ngự hồn"
