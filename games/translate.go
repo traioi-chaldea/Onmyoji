@@ -28,3 +28,8 @@ func translateKirin(name string) string {
 	vp := translate("evol")
 	return vp.GetString(name)
 }
+
+func translateShikigami(name string, method string) string {
+	vp := translate("shikigami")
+	return vp.Sub(name).GetString(method)
+}
